@@ -4,18 +4,17 @@ if currentdate :matches "year" "*" { set "year" "${1}"; }
 
 
 # first two regex adapted from Soren's .procmailrc from Mammoth
-# second ones are an addition based on observing Postifx' transport file 
-# feel free to merge them. 
+# second ones are an addition based on observing Postifx' transport file
+# feel free to merge them.
 #if header :regex ["to"] "eionet-nfp|eionet-nfp-mc|eionet-nfp-cc|eionet-etc-data|eionet-etc-managers|eionet-nrc-energy-mc|eionet-nrc-energy-cc|eionet-nrc-[A-Za-z]*@roles\\.eea\\.eionet\\.(eu\\.int|europa\\.eu)" {
-if header :regex ["to", "cc"] "(eionet-etc-data|eionet-etc-managers|eionet-nfp(-[a-z]{2})?|eionet-nrc-[^-]+(-[a-z]{2})?)@roles\\.eea\\.eionet\\.(eu\\.int|europa\\.eu)" {
-	fileinto "mail/roles-mail-${year}";
+if header :regex ["to", "cc"] "(eionet-etc-data|eionet-etc-managers|eionet-nfp(-[a-z]{2})?|eionet-(biodiversity1|biodiversity2|circulareconomy|climatechangeadaptation|climatechangemitigation|communication|data|foodsystems|foresight|health|landsystems|mobility|soe).*)@roles\\.eea\\.eionet\\.(eu\\.int|europa\\.eu)" {
+        fileinto "mail/roles-mail-${year}";
 } elsif header :regex ["to"] "(eea-mb[A-Za-z-]*|eea-sc[A-Za-z-]*)@roles\\.eea\\.eionet\\.(eu\\.int|europa\\.eu)" {
-	fileinto "rolesmail/roles-mail-${year}";
+        fileinto "rolesmail/roles-mail-${year}";
 #} elsif header :regex ["to"] "eionet-nfp|eionet-nfp-mc|eionet-nfp-cc|eionet-etc-data|eionet-etc-managers|eionet-nrc-[A-Za-z]*@roles\\.eionet\\.(eu\\.int|europa\\.eu)" {
-} elsif header :regex ["to", "cc"] "(eionet-etc-data|eionet-etc-managers|eionet-nfp(-[a-z]{2})?|eionet-nrc-[^-]+(-[a-z]{2})?)@roles\\.eionet\\.(eu\\.int|europa\\.eu)" {
-	fileinto "mail/roles-mail-${year}";
+} elsif header :regex ["to", "cc"] "(eionet-etc-data|eionet-etc-managers|eionet-nfp(-[a-z]{2})?|eionet-(biodiversity1|biodiversity2|circulareconomy|climatechangeadaptation|climatechangemitigation|communication|data|foodsystems|foresight|health|landsystems|mobility|soe).*)@roles\\.eionet\\.(eu\\.int|europa\\.eu)" {
+        fileinto "mail/roles-mail-${year}";
 } elsif header :regex ["to"] "eea-mb[A-Za-z-]*|eea-sc[A-Za-z-]*@roles\\.eionet\\.(eu\\.int|europa\\.eu)" {
-	fileinto "rolesmail/roles-mail-${year}";
-} 
-
+        fileinto "rolesmail/roles-mail-${year}";
+}
 
